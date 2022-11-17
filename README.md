@@ -1,7 +1,7 @@
 # dkml-workflows-regular-example
 
 A "regular" example for the [dkml-workflows](https://github.com/diskuv/dkml-workflows#dkml-workflows)
-collection of GitHub Action workflows. DKML helps you
+collection of GitHub Action, GitLab CI/CD and desktop workflows. DKML helps you
 distribute native OCaml applications on the most common operating systems.
 In particular the [setup-dkml.yml@v1] of [dkml-workflows] builds:
 * Windows libraries and executables with the traditional Visual Studio compiler, avoiding hard-to-debug runtime issued caused by compiler incompatibilities
