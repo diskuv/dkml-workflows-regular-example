@@ -84,12 +84,30 @@ linux_*) opamrun install "./${OPAM_PKGNAME}.opam" --with-test --yes --no-depexts
 *) opamrun install "./${OPAM_PKGNAME}.opam" --with-test --yes ;;
 esac
 
-# Copy the installed binary from 'dkml' Opam switch into dist/ folder
+# Copy the installed binary from 'dkml' Opam switch into dist/ folder:
 #
 # dist/
-#   <abi_pattern>/
+#   <dkml_host_abi>/
 #      <file1>
 #      ...
+#
+# For GitHub Actions specifically the structure is:
+#
+# dist/
+#    <file1>
+#      ...
+# since the ABI should be the uploaded artifact name already in .github/workflows:
+#   - uses: actions/upload-artifact@v3
+#     with:
+#       name: ${{ matrix.dkml_host_abi }}
+#       path: dist/
+
+if [ -n "${GITHUB_ENV:-}" ]; then
+    DIST=dist
+else
+    DIST="dist/${dkml_host_abi}"
+fi
+install -d "${DIST}"
 ls -l "${opam_root}/dkml/bin"
 #   If (executable (public_name EXECUTABLE_NAME) ...) already has .exe then executable will
 #   have .exe. Otherwise it depends on exe_ext.
@@ -98,14 +116,13 @@ case "$EXECUTABLE_NAME" in
 *) suffix_ext="${exe_ext:-}" ;;
 esac
 #   Copy executable
-install -d "dist/${abi_pattern}"
-install -v "${opam_root}/dkml/bin/${EXECUTABLE_NAME}${suffix_ext}" "dist/${abi_pattern}/${EXECUTABLE_NAME}${suffix_ext}"
+install -v "${opam_root}/dkml/bin/${EXECUTABLE_NAME}${suffix_ext}" "${DIST}/${EXECUTABLE_NAME}${suffix_ext}"
 #   For Windows you must ask your users to first install the vc_redist executable.
 #   Confer: https://github.com/diskuv/dkml-workflows#distributing-your-windows-executables
 case "${dkml_host_abi}" in
-windows_x86_64) wget -O "dist/${abi_pattern}/vc_redist.x64.exe" https://aka.ms/vs/17/release/vc_redist.x64.exe ;;
-windows_x86) wget -O "dist/${abi_pattern}/vc_redist.x86.exe" https://aka.ms/vs/17/release/vc_redist.x86.exe ;;
-windows_arm64) wget -O "dist/${abi_pattern}/vc_redist.arm64.exe" https://aka.ms/vs/17/release/vc_redist.arm64.exe ;;
+windows_x86_64) wget -O "${DIST}/vc_redist.x64.exe" https://aka.ms/vs/17/release/vc_redist.x64.exe ;;
+windows_x86) wget -O "${DIST}/vc_redist.x86.exe" https://aka.ms/vs/17/release/vc_redist.x86.exe ;;
+windows_arm64) wget -O "${DIST}/vc_redist.arm64.exe" https://aka.ms/vs/17/release/vc_redist.arm64.exe ;;
 esac
 
 # Final Diagnostics
@@ -115,4 +132,4 @@ linux_*)
         apk add file
     fi ;;
 esac
-file "dist/${abi_pattern}/${EXECUTABLE_NAME}${suffix_ext}"
+file "${DIST}/${EXECUTABLE_NAME}${suffix_ext}"

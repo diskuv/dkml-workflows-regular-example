@@ -1,5 +1,5 @@
 #!/bin/sh
-set -euf
+set -eufx
 
 # dist/
 #   <dkml_target_abi>/
