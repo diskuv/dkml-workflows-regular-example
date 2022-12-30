@@ -31,6 +31,6 @@
  (description
   "Maintenance tools that minimize the dependencies for your_example itself. Use only locally on your development machine.cccccbdigt")
  (depends
-  (dkml-workflows (>= 1.1.0))))
+  (dkml-workflows (>= 1.2.0))))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
