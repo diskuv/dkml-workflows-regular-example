@@ -21,11 +21,16 @@
  (description
   "An example of using dkml-workflows to build on multiple platform, including Windows with Visual Studio and Linux with an old C library.")
  (depends
-  ocaml
-  dune
-  diskuvbox
-  (dkml-workflows (and (>= 1.1.0) :build)))
+  diskuvbox)
  (tags
   (topics "to describe" your project)))
+
+(package
+ (name your_example-maintain)
+ (synopsis "Maintenance for your_example source code: CI workflows, etc.")
+ (description
+  "Maintenance tools that minimize the dependencies for your_example itself. Use only locally on your development machine.cccccbdigt")
+ (depends
+  (dkml-workflows (>= 1.1.0))))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project

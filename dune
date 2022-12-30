@@ -1,0 +1,5 @@
+; At the top level of a Dune project it is always safest to explicitly list
+; which directories contain source code. You don't want dune scanning
+; directories created by local opam or CI development.
+
+(dirs ci bin lib test)

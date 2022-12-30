@@ -1,4 +1,5 @@
 (executable
  (public_name your_example)
+ (package your_example)
  (name main)
  (libraries your_example diskuvbox))
