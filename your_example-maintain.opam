@@ -2,7 +2,7 @@
 opam-version: "2.0"
 synopsis: "Maintenance for your_example source code: CI workflows, etc."
 description:
-  "Maintenance tools that minimize the dependencies for your_example itself. Use only locally on your development machine.cccccbdigt"
+  "Maintenance tools that minimize the dependencies for your_example itself. Use only locally on your development machine."
 maintainer: ["Maintainer Name"]
 authors: ["Author Name"]
 license: "Apache-2.0"
@@ -11,7 +11,7 @@ doc: "https://url/to/documentation"
 bug-reports: "https://github.com/username/reponame/issues"
 depends: [
   "dune" {>= "2.9"}
-  "dkml-workflows" {>= "1.1.0"}
+  "dkml-workflows" {>= "1.2.0"}
   "odoc" {with-doc}
 ]
 build: [

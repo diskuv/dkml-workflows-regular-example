@@ -29,7 +29,7 @@
  (name your_example-maintain)
  (synopsis "Maintenance for your_example source code: CI workflows, etc.")
  (description
-  "Maintenance tools that minimize the dependencies for your_example itself. Use only locally on your development machine.cccccbdigt")
+  "Maintenance tools that minimize the dependencies for your_example itself. Use only locally on your development machine.")
  (depends
   (dkml-workflows (>= 1.2.0))))
 
