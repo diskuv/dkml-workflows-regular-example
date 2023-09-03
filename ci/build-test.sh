@@ -1,7 +1,7 @@
 #!/bin/sh
 set -euf
 
-OPAM_PACKAGE=your_example
+OPAM_PACKAGE=your_example.opam
 EXECUTABLE_NAME=your_example
 
 # shellcheck disable=SC2154
